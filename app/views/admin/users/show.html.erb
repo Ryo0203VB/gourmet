@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4 class="my-5"><%= @users.last_name %>　<%= @users.first_name %>さんの会員詳細</h4>
+      <div class="d-flex align-items-center">
+        <table class="table table-borderless">
+          <tr>
+            <th>会員ID</td>
+            <td><%= @users.id %></td>
+          </tr>
+          <tr>
+            <th>氏名</td>
+            <td><%= @users.last_name %>　<%= @users.first_name %></td>
+          </tr>
+          <tr>
+            <th>フリガナ</th>
+            <td><%= @users.last_name_kana %>　<%= @users.first_name_kana %></td>
+          </tr>
+          <tr></tr>
+          <tr>
+            <th>電話番号</th>
+            <td><%= @users.phone_number %></td>
+          </tr>
+          <tr>
+            <th>メールアドレス</th>
+            <td><%= @users.email %></td>
+          </tr>
+          <tr>
+            <th>会員ステータス</th>
+            <% if @users.is_deleted %>
+            <th class='text-success  font-weight-bold'><%= "退会" %></th>
+            <% else %>
+            <th class='text-muted font-weight-block'><%= "有効" %></th>
+            <% end %>
+          </tr>
+          <tr class=>
+            <td></td>
+            <td class=><%= link_to "編集する", edit_admin_user_path, class:"btn btn-success mr-2" %>
+            <%= link_to "投稿履歴一覧を見る", admin_user_path(@users), class:"btn btn-primary ml-2" %></td>
+        </tr>
+        </table>
+
+
+
+      <!--</div>-->
+    </div>
+  </div>
+</div>

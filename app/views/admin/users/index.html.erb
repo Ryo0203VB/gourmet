@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+    <h2 class="text-center mt-5 mb-5">会員一覧</h2>
+     <div class="d-flex align-items-center">
+
+
+      <table class="table text-center">
+        <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <%= user.id %>
+            </td>
+            <td>
+              <%= link_to admin_user_path(user.id) do %>
+              <%= user.last_name %> <%= user.first_name %>
+              <% end %>
+            </td>
+            <td>
+              <%= user.email %>
+            </td>
+           <td class= "<%= user.is_deleted ? 'text-gray' : 'text-green' %>"><%= user.is_deleted ? '退会済み' : '有効' %>
+           </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+ </div>
+ </div>

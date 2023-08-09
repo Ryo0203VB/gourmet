@@ -1,0 +1,88 @@
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container mx-auto">
+
+        <ul class="navbar-nav ml-auto">
+
+       <div class="login-name mx-auto text-light">
+        <% if user_signed_in? %>
+        <p>ようこそ, <%= current_user.last_name %> さん！</p>
+　　　　<% elsif admin_signed_in? %>
+　　　　<p>管理者　ログイン中</p>
+　　　　<% end %>
+　　　</div>
+
+　　　　<ul class="nav navbar-nav navbar-right">
+　　　　  <% if user_signed_in? %>
+　　　　  <!--ユーザーがログインしているとき-->
+          <li>
+            <%= link_to users_information_path,class: 'nav-link text-light' do %>
+              マイページ
+            <% end %>
+          </li>
+
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
+               ログアウト
+            <% end %>
+          </li>
+
+          <form class="search">
+            <%= form_with model: @genre do |f| %>
+                <%= f.text_field :genre, placeholder: "キーワード検索" %>
+                  <i class="fas fa-search" style="color: #f7f9fc;"></i>
+                <% f.submit %>
+              <% end %>
+            </div>
+
+
+          <% elsif admin_signed_in? %>
+          <!--管理車がログインしているとき-->
+          <li>
+            <%=  link_to admin_users_path, class: 'nav-link text-light' do %>
+              会員一覧
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to admin_genres_path, class: 'nav-link text-light' do %>
+              ジャンル一覧
+            <% end %>
+          </li>
+          <li>
+            <%=  link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
+              ログアウト
+            <% end %>
+          </li>
+
+          <div class="search mt-2 ml-1">
+            <%= form_with  do |f| %>
+                <%= f.text_field :genre, placeholder: "キーワード検索" %>
+                  <i class="fas fa-search" style="color: #f7f9fc;"></i>
+                <% f.submit %>
+              <% end %>
+            </div>
+
+          <% else %>
+　　　　　<!--誰もログインしていないとき-->
+          <li>
+            <%= link_to about_path,class: 'nav-link text-light' do %>
+               About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+               新規登録
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+               ログイン
+            <% end %>
+          </li>
+
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
