@@ -1,24 +1,40 @@
-# README
+# グルメでGO
+​
+## サイト概要
+### サイトテーマ
+身近な人の投稿が、きなっているお店や行ってみたいと思っているお店に行きやすくするレビューサイト
+​
+### テーマを選んだ理由
+もともと、色々な料理を食べるのが好きなのですが、新しいお店を探したり、行ったことのないお店に行くのが、</br>
+少し不安で、行きにくいと感じる部分もありました。他のレビューサイトなどを観ると写真やレビューが良いことしか</br>
+書いてなく実際に利用した人の写真やコメントが少なく見受けられます。そこで、サイトの写真と実際のお店と</br>
+のギャップが生まれないようにするために、個人がレビューを投稿することで、お店探しを簡単にするだけではな</br>
+く、お店に生きやすくして、サイトとレビューのギャップが生まれないようにしたいと考え、このテーマにしました。
+​
+### ターゲットユーザ
+・食べることが好きな人
+・行ったことのないお店に行ってみたい人
+・その時のご飯や飲み会などで困っている人
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 主な利用シーン
+・食べたいもの探している時
+・気になっているお店の評判や味が気になっている時
+・行ったことのお店を探している時
+・自身が行ったお店のレビューをする時
+​
+## 設計書
+<!--テーマを設定・提出する時点では不要です-->
+​
+## 開発環境
+- OS：macOS Ventura 13.4.1
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+- API:Google Map API
+​
+## 使用素材
+- 検討中です
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 制作者
+工藤良介 [(Ryo0203VB)](https://github.com/Ryo0203VB)
