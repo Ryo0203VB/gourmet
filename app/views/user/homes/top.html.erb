@@ -1,1 +1,33 @@
-<h1>Topページ</h1>
+
+
+
+<h2>gmap</h2>
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  geocoder = new google.maps.Geocoder()
+
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 35.681236, lng: 139.767125 },
+    zoom: 12,
+  });
+
+  marker = new google.maps.Marker({
+    position:  {lat: 35.681236, lng: 139.767125 },
+    map: map
+  });
+}
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcHor5XEOOVGZy6P0auBJBeICzFC87KPU&callback=initMap" async defer></script>
+<!--Google Map APIの指定URLを記述。-->
