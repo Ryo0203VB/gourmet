@@ -28,9 +28,12 @@ devise_for :user, skip: [:passwords], controllers: {
     patch "users/information" => "users#update"
     get "users/confirm_withdraw" => "userss#confirm_withdraw"
     patch "users/withdraw" => "user#withdraw"
-
+    resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy]
 end
 
+devise_scope :user do
+    post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'
+  end
 
 
 end

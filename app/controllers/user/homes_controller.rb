@@ -7,7 +7,6 @@ class User::HomesController < ApplicationController
     # @genres = Genre.all
   end
 
-
 private
 
   def set_item

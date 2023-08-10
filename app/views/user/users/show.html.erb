@@ -5,6 +5,12 @@
 
       <div class="mt-4">
         <span class="font-weight-bold">登録情報</span>
+        <% unless user.guest_user? %>
+        <div class="row">
+          <%= link_to "",edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
+        </div>
+        <% end %>
+        
         <%= link_to "編集する", users_information_edit_path, class: "pull-right btn  btn-sm btn-success col-2 mx-3 font-weight-bold" %>
       </div>
       <!--登録情報テーブル-->
@@ -30,6 +36,6 @@
       </table>
 
 
-
+        
   </div>
 </div>

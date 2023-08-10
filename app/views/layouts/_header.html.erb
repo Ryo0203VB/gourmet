@@ -20,6 +20,16 @@
               マイページ
             <% end %>
           </li>
+          <li>
+            <%= link_to new_post_path,class: 'nav-link text-light' do %>
+            新規投稿
+            <% end %>
+          </li>
+         <li>
+            <%= link_to posts_path,class: 'nav-link text-light' do %>
+            投稿一覧
+            <% end %>
+          </li>
 
           <li>
             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
@@ -44,12 +54,12 @@
             <% end %>
           </li>
           <li>
-            <%=  link_to admin_genres_path, class: 'nav-link text-light' do %>
+            <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
               ジャンル一覧
             <% end %>
           </li>
           <li>
-            <%=  link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
+            <%= link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
               ログアウト
             <% end %>
           </li>
@@ -64,6 +74,11 @@
 
           <% else %>
 　　　　　<!--誰もログインしていないとき-->
+　　　　　<li>
+　　　　　  <%= link_to users_guest_sign_in_path,class: 'nav-link text-light', method: :post do %>
+　　　　　     ゲストログイン(閲覧用)
+　　　　　  <% end %>
+　　　　　</li>
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
                About
@@ -79,7 +94,6 @@
                ログイン
             <% end %>
           </li>
-
         <% end %>
         </ul>
       </div>
