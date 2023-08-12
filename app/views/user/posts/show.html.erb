@@ -1,0 +1,29 @@
+<div class='container'>
+  <div class='row'>
+
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Store</h2>
+  		<table class='table'>
+  		  <tr>
+          <td>
+            <%= link_to users_information_path(@user.id) do %>
+            <%= image_tag @post.user.get_image(100,100) %><br>
+            <%= @post.user.last_name %> <%= @post.user.first_name %>
+            <% end %>
+          </td>
+          <td><%= image_tag @post.get_image(100, 100) %><td>
+          <td><%= @post.name %></td>
+          <td><%= @post.introduction %></td>
+          <td><%= @post.address %></td>
+
+
+          <% if @post.user == current_user %>
+            <td><%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-sm btn-success" %></td>
+            <td><%= link_to 'Destroy', post_path(@post.id), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <% end %>
+        </tr>
+      </table>
+
+          </div>
+        </div>
+      </div>

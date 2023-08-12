@@ -3,12 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-         
-  validates :name, presence: true, length: { maximum: 50 }
-  validates :introduction, length: {maximum: 50 }
-  
+
   has_one_attached :image
-  has_many :postss, dependent: :destroy
+  has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
@@ -25,7 +22,8 @@ class User < ApplicationRecord
   validates :first_name_kana, presence: true
   validates :phone_number, presence: true
   validates :email, presence: true
-  
+  validates :introduction, length: {maximum: 50 }
+
   # フォローしたときの処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
@@ -38,20 +36,9 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-  
-  GUEST_USER_EMAIL = "guest@example.com"
 
-  def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
-      user.password = SecureRandom.urlsafe_base64
-      user.name = "guestuser"
-    end
-  end
-    
-  def guest_user?
-    email == GUEST_USER_EMAIL
-  end
-  
+
+
   def get_image(height, width)
       unless image.attached?
         file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -59,7 +46,7 @@ class User < ApplicationRecord
       end
       image.variant(resize_to_limit: [height, width]).processed
   end
-  
+
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないよう制約
   def active_for_authentication?
       super && (is_deleted == false)

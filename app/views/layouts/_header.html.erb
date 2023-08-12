@@ -74,11 +74,7 @@
 
           <% else %>
 　　　　　<!--誰もログインしていないとき-->
-　　　　　<li>
-　　　　　  <%= link_to users_guest_sign_in_path,class: 'nav-link text-light', method: :post do %>
-　　　　　     ゲストログイン(閲覧用)
-　　　　　  <% end %>
-　　　　　</li>
+
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
                About

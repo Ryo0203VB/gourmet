@@ -5,23 +5,19 @@
 
       <div class="mt-4">
         <span class="font-weight-bold">登録情報</span>
-        <% unless user.guest_user? %>
-        <div class="row">
-          <%= link_to "",edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-        </div>
-        <% end %>
-        
+
+
         <%= link_to "編集する", users_information_edit_path, class: "pull-right btn  btn-sm btn-success col-2 mx-3 font-weight-bold" %>
       </div>
       <!--登録情報テーブル-->
       <table class="teble table-bordered px-2 col-8 mt-3">
         <tr>
           <th class="col-3 table-active py-2">氏名</th>
-          <td class="pl-1"><%= @user.last_name %><%= @user.first_name %></td>
+          <td class="pl-1"><%= @user.last_name %> <%= @user.first_name %></td>
         </tr>
         <tr>
           <th class="col-3 table-active py-2">カナ</th>
-          <td class="pl-1"><%= @user.last_name_kana %><%= @user.first_name_kana %></td>
+          <td class="pl-1"><%= @user.last_name_kana %> <%= @user.first_name_kana %></td>
         </tr>
         <tr>
 
@@ -33,9 +29,12 @@
           <th class="col-3 table-active py-2">メールアドレス</th>
           <td class="pl-1"><%= @user. email%></td>
         </tr>
+
       </table>
 
+　　　<div class="col-lg-5">
+       <%= image_tag @user.get_image(100, 100), class: "rounded-bottom" %>
+      </div>
 
-        
   </div>
 </div>

@@ -28,7 +28,9 @@ devise_for :user, skip: [:passwords], controllers: {
     patch "users/information" => "users#update"
     get "users/confirm_withdraw" => "userss#confirm_withdraw"
     patch "users/withdraw" => "user#withdraw"
-    resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy]
+    resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
+      resource :favorites, only: [:create, :destroy]
+    end
 end
 
 devise_scope :user do

@@ -13,6 +13,10 @@
     <!--編集フォーム-->
     <div class="mt-5">
       <%= form_with model: @user, url: users_information_path, method: :patch, local:true do |f| %>
+      <div class="field row mt-2">
+        <%= f.label :image, "ユーザー画像", class: "col-4 col-form-label" %>
+        <%= f.file_field :image, class: "btn" %>
+      </div>
         <div class="field row mt-2">
           <label class="col-2">氏名</label>
             <%= f.label :（姓） , class: 'col-1' %>

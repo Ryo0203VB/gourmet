@@ -8,12 +8,10 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @post_comment = PostComment.new
   end
 
   def index
     @posts = Post.all
-    @post = Post.new
     @Post = current_user
   end
 
@@ -36,7 +34,7 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path(@post), notice: "You have updated book successfully."
+      redirect_to posts_path, notice: "You have updated book successfully."
     else
       render :edit
     end
@@ -45,25 +43,25 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    # redirect_to books_path
+    redirect_to posts_path,notice: "You have updated book successfully."
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:name, :introduction, :user_id)
+    params.require(:post).permit(:name, :introduction, :address, :image, :user_id)
   end
 
  def set_select_genres
     @genres = Genre.all.map {|genre| [genre.name, genre.id] }.unshift(["--選択してください--", nil])
  end
 
-  # def is_matching_login_user
-  #     book = Book.find(params[:id])
-  #     unless book.user.id == current_user.id
-  #       redirect_to books_path
-  #     end
-  # end
+  def is_matching_login_user
+      @post  = Post.find(params[:id])
+       unless @post.user.id == current_user.id
+         redirect_to posts_path
+       end
+  end
 
 
 end
