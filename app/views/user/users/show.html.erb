@@ -7,7 +7,7 @@
         <span class="font-weight-bold">登録情報</span>
 
 
-        <%= link_to "編集する", users_information_edit_path, class: "pull-right btn  btn-sm btn-success col-2 mx-3 font-weight-bold" %>
+
       </div>
       <!--登録情報テーブル-->
       <table class="teble table-bordered px-2 col-8 mt-3">
@@ -27,14 +27,24 @@
         </tr>
         <tr>
           <th class="col-3 table-active py-2">メールアドレス</th>
-          <td class="pl-1"><%= @user. email%></td>
+          <td class="pl-1"><%= @user.email%></td>
         </tr>
-
+        <tr>
+          <th class="col-3 table-active py-2">follows</th>
+          <th><%= link_to @user.followings.count, user_followings_path(@user) %></th>
+        </tr>
+        <tr>
+          <th class="col-3 table-active py-2">followers</th>
+          <th><%= link_to @user.followers.count, user_followers_path(@user) %></th>
+        </tr>
       </table>
 
 　　　<div class="col-lg-5">
        <%= image_tag @user.get_image(100, 100), class: "rounded-bottom" %>
       </div>
 
+     <%= link_to "編集する", edit_user_path, class: "pull-right btn  btn-sm btn-success col-2 mx-3 font-weight-bold" %>
+
+     <%= render "user/relationships/btn", user: @user, options: { class: ""} %>
   </div>
 </div>

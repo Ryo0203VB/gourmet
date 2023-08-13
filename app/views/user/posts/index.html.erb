@@ -15,7 +15,7 @@
   <tbody>
     <% @posts.each do |posts| %>
       <tr>
-        <td><%= link_to users_information_path(current_user) do %>
+        <td><%= link_to user_path(current_user) do %>
           <%= image_tag posts.user.get_image(50,50) %>
           <% end %>
         </td>

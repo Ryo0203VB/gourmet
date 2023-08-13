@@ -22,16 +22,20 @@ devise_for :user, skip: [:passwords], controllers: {
   scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
-    # URLの置き換え
-    get "users/information" => "users#show"
-    get "users/information/edit" => "users#edit"
-    patch "users/information" => "users#update"
-    get "users/confirm_withdraw" => "userss#confirm_withdraw"
-    patch "users/withdraw" => "user#withdraw"
-    resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
-      resource :favorites, only: [:create, :destroy]
+    
+    resources :users, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
+    resource :relationships, only: [:create, :destroy]
+  	get "followings" => "relationships#followings", as: "followings"
+  	get "followers" => "relationships#followers", as: "followers"
     end
-end
+    # URLの置き換え
+    get "users/confirm_withdraw" => "users#confirm_withdraw"
+    patch "users/withdraw" => "user#withdraw"
+
+    resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
+    resource :favorites, only: [:create, :destroy]
+    end
+  end
 
 devise_scope :user do
     post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'

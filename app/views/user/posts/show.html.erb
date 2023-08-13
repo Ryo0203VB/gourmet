@@ -6,7 +6,7 @@
   		<table class='table'>
   		  <tr>
           <td>
-            <%= link_to users_information_path(@user.id) do %>
+            <%= link_to user_path(@user.id) do %>
             <%= image_tag @post.user.get_image(100,100) %><br>
             <%= @post.user.last_name %> <%= @post.user.first_name %>
             <% end %>

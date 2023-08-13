@@ -3,7 +3,7 @@ class User::UsersController < ApplicationController
 
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def edit
@@ -14,7 +14,7 @@ class User::UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = "登録情報を更新しました"
-      redirect_to users_information_path
+      redirect_to users_path
     else
       render "edit"
     end

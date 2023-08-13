@@ -12,7 +12,7 @@
     <% end %>
     <!--編集フォーム-->
     <div class="mt-5">
-      <%= form_with model: @user, url: users_information_path, method: :patch, local:true do |f| %>
+      <%= form_with model: @user, url: user_path, method: :patch, local:true do |f| %>
       <div class="field row mt-2">
         <%= f.label :image, "ユーザー画像", class: "col-4 col-form-label" %>
         <%= f.file_field :image, class: "btn" %>
