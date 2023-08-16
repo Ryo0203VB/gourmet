@@ -8,6 +8,7 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
 
  namespace :admin do
    get "/homes" => "homes#top"
+   get "search" => "searches#search"
    resources :genres, only:[:index, :create, :edit, :update, :destroy]
    resources :users, only:[:index, :show, :edit, :update]
 end
@@ -22,7 +23,8 @@ devise_for :user, skip: [:passwords], controllers: {
   scope module: :user do
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
-    
+    get "search" => "searches#search"
+
     resources :users, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
   	get "followings" => "relationships#followings", as: "followings"
@@ -33,8 +35,11 @@ devise_for :user, skip: [:passwords], controllers: {
     patch "users/withdraw" => "user#withdraw"
 
     resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
-    resource :favorites, only: [:create, :destroy]
+     resources :comments, only: [:create, :destroy]
+     resource :favorites, only: [:create, :destroy]
     end
+    resources :chats, only: [:create]
+    resources :rooms, only: [:create, :index, :show]
   end
 
 devise_scope :user do

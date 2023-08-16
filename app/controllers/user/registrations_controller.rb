@@ -48,7 +48,7 @@ class User::RegistrationsController < Devise::RegistrationsController
 
   # サインアップ後の遷移先（マイページへ）
   def after_sign_up_path_for(resource)
-    users_information_path
+    user_path(current_user.id)
   end
 
   # If you have extra params to permit, append them to the sanitizer.

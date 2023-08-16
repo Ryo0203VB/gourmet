@@ -15,6 +15,7 @@
           <td><%= @post.name %></td>
           <td><%= @post.introduction %></td>
           <td><%= @post.address %></td>
+          <td>コメント数： <%= @post.comments.count %></td>
 
 
           <% if @post.user == current_user %>
@@ -23,6 +24,9 @@
             <% end %>
         </tr>
       </table>
+
+       <%= render "user/comments/index", post: @post %>
+      <%= render "user/comments/form", post: @post, comment: @comment %>
 
           </div>
         </div>

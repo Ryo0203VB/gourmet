@@ -1,5 +1,7 @@
 class User::PostsController < ApplicationController
 
+  before_action :set_select_genres
+
   def new
     @posts = Post.new
   end
@@ -7,10 +9,14 @@ class User::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
+    @comment = Comment.new
+    @genres = Genre.all
   end
 
   def index
-    @posts = Post.all
+   to  = Time.current.at_end_of_day
+   from  = (to - 6.day).at_beginning_of_day
+   @posts = Post.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
   end
 
   def create
@@ -47,11 +53,11 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :introduction, :address, :image, :user_id)
+    params.require(:post).permit(:name, :introduction, :address, :image, :genre_id, :user_id)
   end
 
  def set_select_genres
-    @genres = Genre.all.map {|genre| [genre.name, genre.id] }.unshift(["--選択してください--", nil])
+     @genres = Genre.all.map {|genre| [genre.name, genre.id] }.unshift(["--選択してください--", nil])
  end
 
   def is_matching_login_user

@@ -36,15 +36,10 @@
                ログアウト
             <% end %>
           </li>
-
-          <form class="search">
-            <%= form_with model: @genre do |f| %>
-                <%= f.text_field :genre, placeholder: "キーワード検索" %>
-                  <i class="fas fa-search" style="color: #f7f9fc;"></i>
-                <% f.submit %>
-              <% end %>
-            </div>
-
+          
+          <li>
+          <%= render 'layouts/search' %>
+         </li>
 
           <% elsif admin_signed_in? %>
           <!--管理車がログインしているとき-->
@@ -64,17 +59,17 @@
             <% end %>
           </li>
 
-          <div class="search mt-2 ml-1">
-            <%= form_with  do |f| %>
-                <%= f.text_field :genre, placeholder: "キーワード検索" %>
-                  <i class="fas fa-search" style="color: #f7f9fc;"></i>
-                <% f.submit %>
-              <% end %>
-            </div>
+          <li>
+          <%= render 'layouts/search' %>
+         </li>
 
           <% else %>
 　　　　　<!--誰もログインしていないとき-->
-
+　　　　　<li>
+            <%= link_to root_path,class: 'nav-link text-light' do %>
+               Top
+            <% end %>
+          </li>
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
                About

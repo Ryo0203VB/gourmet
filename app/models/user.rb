@@ -15,6 +15,24 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  has_many :entries
+  has_many :chats
+
+  def name
+  "#{last_name} #{first_name}"
+  end
+
+def self.ransackable_attributes(auth_object = nil)
+["created_at", "email", "encrypted_password", "first_name", "first_name_kana", "id", "introduction", "is_deleted", "last_name", "last_name_kana", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+end
+
+  # def self.ransackable_attributes(auth_object = nil)
+  #   ["name", "created_at", "email", "encrypted_password", "first_name", "first_name_kana", "id", "introduction", "is_deleted", "last_name", "last_name_kana", "phone_number", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at"]
+  # end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["chats", "comments", "entries", "favorites", "followers", "followings", "image_attachment", "image_blob", "posts", "relationships", "reverse_of_relationships"]
+  end
 
   validates :last_name, presence: true
   validates :first_name, presence: true
@@ -36,7 +54,6 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
-
 
 
   def get_image(height, width)

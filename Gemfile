@@ -71,3 +71,7 @@ gem 'seed-fu'
 gem 'gmaps4rails'
 # 緯度経緯度を変換してくれる
 gem 'geocoder'
+
+gem 'jquery-rails'
+
+gem 'ransack'

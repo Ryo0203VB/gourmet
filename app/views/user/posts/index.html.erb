@@ -27,6 +27,7 @@
         <td><%= posts.introduction %></td>
         <td><%= posts.address %></td>
         <td><%= render "user/favorites/btn", post: posts %></td>
+        <td>コメント数： <%= posts.comments.count %></td>
       </tr>
     <% end %>
   </tbody>

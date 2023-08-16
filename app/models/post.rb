@@ -1,8 +1,8 @@
 class Post < ApplicationRecord
 
   belongs_to :user
-  # belongs_to :genre, foreign_key: 'genre_id'
-  # has_many :comments, dependent: :destroy
+  belongs_to :genre, foreign_key: 'genre_id'
+  has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
   has_one_attached :image
