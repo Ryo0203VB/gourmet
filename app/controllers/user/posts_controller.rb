@@ -53,7 +53,7 @@ class User::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :introduction, :address, :image, :genre_id, :user_id)
+    params.require(:post).permit(:name, :introduction, :address, :image,  :star, :genre_id, :user_id)
   end
 
  def set_select_genres

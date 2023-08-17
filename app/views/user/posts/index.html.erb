@@ -28,6 +28,20 @@
         <td><%= posts.address %></td>
         <td><%= render "user/favorites/btn", post: posts %></td>
         <td>コメント数： <%= posts.comments.count %></td>
+        <td>
+          <div id="star-rate<%= posts.id%>"> </td>
+          <script>
+            $('#star-rate<%= posts.id %>').empty();
+            window.raty(document.querySelector('#star-rate<%= posts.id%>'), {
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= posts.star %>,
+            });
+          </script>
+          </div>
       </tr>
     <% end %>
   </tbody>
