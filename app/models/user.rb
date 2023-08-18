@@ -18,6 +18,15 @@ class User < ApplicationRecord
   has_many :entries
   has_many :chats
 
+
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :phone_number, presence: true
+  validates :email, presence: true
+  validates :introduction, length: {maximum: 50 }
+
   def name
   "#{last_name} #{first_name}"
   end
@@ -33,14 +42,6 @@ end
   def self.ransackable_associations(auth_object = nil)
     ["chats", "comments", "entries", "favorites", "followers", "followings", "image_attachment", "image_blob", "posts", "relationships", "reverse_of_relationships"]
   end
-
-  validates :last_name, presence: true
-  validates :first_name, presence: true
-  validates :last_name_kana, presence: true
-  validates :first_name_kana, presence: true
-  validates :phone_number, presence: true
-  validates :email, presence: true
-  validates :introduction, length: {maximum: 50 }
 
   # フォローしたときの処理
   def follow(user_id)
@@ -63,6 +64,19 @@ end
       end
       image.variant(resize_to_limit: [height, width]).processed
   end
+
+  GUEST_USER_EMAIL = "guest@example.com"
+
+    def self.guest
+      find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
+        user.password = SecureRandom.urlsafe_base64
+        name = "guestuser"
+      end
+    end
+
+    def guest_user?
+     email == GUEST_USER_EMAIL
+    end
 
   # ログイン時に退会済みのユーザーが同じアカウントでログイン出来ないよう制約
   def active_for_authentication?

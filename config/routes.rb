@@ -24,15 +24,16 @@ devise_for :user, skip: [:passwords], controllers: {
     root to: 'homes#top'
     get '/about' => 'homes#about', as: 'about'
     get "search" => "searches#search"
+     # URLの置き換え
+    get "users/confirm_withdraw" => "users#confirm_withdraw"
+    patch "users/withdraw" => "users#withdraw"
+    get "user" => "users#dummy",as: "dummy"
 
     resources :users, only: [:new, :index, :create, :show, :edit, :update, :destroy] do
     resource :relationships, only: [:create, :destroy]
   	get "followings" => "relationships#followings", as: "followings"
   	get "followers" => "relationships#followers", as: "followers"
     end
-    # URLの置き換え
-    get "users/confirm_withdraw" => "users#confirm_withdraw"
-    patch "users/withdraw" => "user#withdraw"
 
     resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
      resources :comments, only: [:create, :destroy]

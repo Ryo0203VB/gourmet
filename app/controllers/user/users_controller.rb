@@ -1,8 +1,15 @@
 class User::UsersController < ApplicationController
-before_action :ensure_correct_user, only: [:edit, :update]
+  before_action :authenticate_user!, except: [:dummy]
+  before_action :ensure_guest_user, only: [:edit, :update]
+  before_action :reject_customer, only: [:create]
+
+  def dummy
+    redirect_to new_user_registration_path
+  end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
     #チャット
 			#Entry内のuser_idがcurrent_userと同じEntry
 			@currentUserEntry = Entry.where(user_id: current_user.id)
@@ -62,12 +69,27 @@ before_action :ensure_correct_user, only: [:edit, :update]
     params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :image, :is_deleted)
   end
 
- def ensure_correct_user
+ def ensure_guest_user
     @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to user_path(current_user)
+    if @user.guest_user?
+      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
  end
+
+
+  def reject_end_user
+      @end_user = EndUser.find_by(email: params[:end_user][:email])
+      if @end_user
+        if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_deleted == true)
+          flash[:notice] = "退会済みです。再度ご登録をしてご利用ください"
+          redirect_to new_end_user_registration_path
+        else
+          flash[:notice] = "項目を入力してください"
+        end
+      else
+        flash[:notice] = "該当するユーザーが見つかりません"
+      end
+    end
 
 end
 

@@ -75,3 +75,7 @@ gem 'geocoder'
 gem 'jquery-rails'
 
 gem 'ransack'
+
+gem 'devise-i18n'
+
+gem 'rails-i18n'
