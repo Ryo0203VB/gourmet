@@ -14,7 +14,7 @@
           <td><%= image_tag @post.get_image(100, 100) %><td>
           <td><%= @post.name %></td>
           <td><%= @post.introduction %></td>
-          <td><%= @post.address %></td>
+          <td><%=  link_to @post.address, maps_path(address: @post.address) %></td>
           <td>コメント数： <%= @post.comments.count %></td>
           <td>
             <div id="star-rate<%= @post.id%>"></td>

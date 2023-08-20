@@ -28,7 +28,8 @@ class User::RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create(user_id: current_user.id)
+    # @room = Room.create(user_id: current_user.id)
+    @room = Room.create(name: "xxx")
     #entryにログインユーザーを作成
     @entry1 = Entry.create(:room_id => @room.id, :user_id => current_user.id)
     #entryにparamsユーザーを作成

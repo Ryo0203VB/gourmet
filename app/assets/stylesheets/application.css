@@ -14,3 +14,14 @@
  *= require_self
  */
 
+@media screen and (max-width: 768px) {
+ header {
+    width: 100%;  /* 横幅100% */
+  }
+
+ main {
+    width: 100%;
+    display: block;
+ }
+
+}

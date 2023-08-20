@@ -35,13 +35,18 @@ devise_for :user, skip: [:passwords], controllers: {
   	get "followers" => "relationships#followers", as: "followers"
     end
 
+    resources :chats, only: [:create]
+    resources :rooms, only: [:create, :index, :show]
+
     resources :posts, only:[:new, :index, :create, :show, :edit, :update, :destroy] do
      resources :comments, only: [:create, :destroy]
      resource :favorites, only: [:create, :destroy]
     end
-    resources :chats, only: [:create]
-    resources :rooms, only: [:create, :index, :show]
+
   end
+
+  get 'maps/index'
+  resources :maps, only: [:index]
 
 devise_scope :user do
     post 'users/guest_sign_in', to: 'user/sessions#guest_sign_in'

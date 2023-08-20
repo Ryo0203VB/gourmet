@@ -54,11 +54,11 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-
+# デバイス
 gem 'devise'
-
+# ステータス表示
 gem "enum_help"
-
+# ページネーション
 gem 'kaminari'
 
 gem 'pry-rails'
@@ -73,9 +73,11 @@ gem 'gmaps4rails'
 gem 'geocoder'
 
 gem 'jquery-rails'
-
+# 検索機能
 gem 'ransack'
-
+# デバイス日本語化
 gem 'devise-i18n'
-
+# 日本語化
 gem 'rails-i18n'
+# API保持機能
+gem 'dotenv-rails'

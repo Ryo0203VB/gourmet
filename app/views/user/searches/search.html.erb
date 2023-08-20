@@ -16,7 +16,7 @@
       </thead>
       <tbody>
         <% @user.each do |f| %>
-      　<tr>
+        <tr>
           <td><%= image_tag f.get_image(200,200), class: "image" %></td>
           <td><%= link_to f.name, user_path(f.id) %></td>
         </tr>
@@ -31,7 +31,7 @@
       </thead>
       <tbody>
         <% @posts.each do |f| %>
-      　<tr>
+       <tr>
           <td><%= f.name %></td>
         </tr>
         <% end %>

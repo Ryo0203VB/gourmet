@@ -10,6 +10,7 @@
         <% end %>
       </ul>
     <% end %>
+
     <!--編集フォーム-->
     <div class="mt-5">
       <%= form_with model: @user, url: user_path, method: :patch, local:true do |f| %>
@@ -31,6 +32,11 @@
             <%= f.text_field :last_name_kana %>
             <%= f.label :（ﾒｲ）, class: 'col-1' %>
             <%= f.text_field :first_name_kana %>
+        </div>
+
+        <div class="field row mt-2">
+          <label class="col-3">紹介文</label>
+            <%= f.text_area :introduction %>
         </div>
 
         <div class="field row mt-2">

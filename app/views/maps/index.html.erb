@@ -1,0 +1,70 @@
+
+<h2>Map</h2>
+
+<div id='map'></div>
+
+<style>
+#map {
+  height: 600px;
+  width: 600px;
+}
+</style>
+
+<script>
+let map
+
+function initMap(){
+  <% if @address %>
+   let marker
+    geocoder = new google.maps.Geocoder()
+    geocoder.geocode( { 'address': "<%= @address %>"}, function(results, status) {
+      if (status == 'OK') {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center:　(results[0].geometry.location),
+          zoom: 17,
+        });
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      } else {
+        alert('該当する結果がありませんでした：' + status);
+      }
+    });
+    marker
+  <% else %>
+    geocoder = new google.maps.Geocoder()
+
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: 35.689501, lng:139.691722},
+        zoom: 17,
+      });
+
+      marker = new google.maps.Marker({
+        position:  {lat: 35.689501, lng:139.691722},
+        map: map
+      });
+  <% end %>
+}
+
+let geocoder
+
+function codeAddress(){
+  let inputAddress = document.getElementById('address').value;
+
+  geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+    if (status == 'OK') {
+      map.setCenter(results[0].geometry.location);
+      var marker = new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('該当する結果がありませんでした：' + status);
+    }
+  });
+}
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAP_API'] %>&callback=initMap" async defer></script>

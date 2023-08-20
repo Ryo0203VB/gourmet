@@ -1,3 +1,25 @@
 // Place all the styles related to the user/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+h1 {
+  font-family: serif;
+}
+
+.cover-new {
+  height: 100%;
+  width: 100%;
+  background-image: url(/assets/sample2.jpg);
+  background-color: rgba(255, 255, 255, 0.4);
+  background-blend-mode: lighten;
+  background-size: 100% 100%;
+}
+
+.form-label {
+  font-size: 20px;
+
+}
+
+.form-group {
+  width: 600px;
+}

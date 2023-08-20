@@ -19,7 +19,7 @@
           <%= image_tag posts.user.get_image(50,50) %>
           <% end %>
         </td>
-        <td><%= link_to post_path(posts.id) do %>
+        <td><%= link_to post_path(posts.id),data: {"turbolinks"=>false} do %>
         <%= posts.name %>
          <% end %>
         </td>

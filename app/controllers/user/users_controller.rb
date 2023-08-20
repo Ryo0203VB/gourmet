@@ -44,7 +44,7 @@ class User::UsersController < ApplicationController
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = "登録情報を更新しました"
-      redirect_to users_path
+      redirect_to user_path
     else
       render "edit"
     end
@@ -66,7 +66,7 @@ class User::UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :image, :is_deleted)
+    params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :image, :introduction, :is_deleted)
   end
 
  def ensure_guest_user
@@ -89,7 +89,7 @@ class User::UsersController < ApplicationController
       else
         flash[:notice] = "該当するユーザーが見つかりません"
       end
-    end
+  end
 
 end
 
