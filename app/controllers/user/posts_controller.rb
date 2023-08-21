@@ -47,7 +47,7 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to post_path, notice: "You have updated book successfully."
+    redirect_to posts_path, notice: "You have updated book successfully."
   end
 
   private
