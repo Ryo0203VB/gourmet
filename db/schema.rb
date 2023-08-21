@@ -124,8 +124,8 @@ ActiveRecord::Schema.define(version: 2023_08_15_030625) do
     t.string "last_name_kana", default: "", null: false
     t.string "first_name_kana", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "phone_number", default: ""
-    t.text "introduction", default: ""
+    t.string "phone_number", default: "", null: false
+    t.text "introduction"
     t.boolean "is_deleted", default: false, null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
