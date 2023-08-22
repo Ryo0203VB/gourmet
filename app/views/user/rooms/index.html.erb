@@ -3,7 +3,7 @@
     <table class="table table-striped">
         <tr>
  	        <td>
-　　　　　　　　　<!-- 名前からroomの詳細に飛べるようにリンク化 -->
+           <!-- 名前からroomの詳細に飛べるようにリンク化 -->
 	            <%= link_to room_path(e.room.id) do %>
 		            <%= attachment_image_tag e.user, :image, format: 'jpeg', class: "rounded-circle", fallback: "no_image.jpg", size: "30x30" %>
 			        <%= e.user.name %>

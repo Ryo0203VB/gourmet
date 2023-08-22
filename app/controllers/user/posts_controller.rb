@@ -3,7 +3,7 @@ class User::PostsController < ApplicationController
   before_action :set_select_genres
 
   def new
-    @posts = Post.new
+    @post = Post.new
   end
 
   def show
@@ -24,10 +24,10 @@ class User::PostsController < ApplicationController
     @post.user_id = current_user.id
     @user = User.find(current_user.id)
     if @post.save
-      redirect_to post_path(@post.id), notice: "You have created book successfully."
+      redirect_to post_path(@post.id), notice: "投稿できました"
     else
       @posts = Post.all
-      render :index
+      render :new
     end
   end
 
@@ -38,7 +38,7 @@ class User::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      redirect_to post_path, notice: "You have updated book successfully."
+      redirect_to post_path, notice: "編集できました"
     else
       render :edit
     end
@@ -47,7 +47,7 @@ class User::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to posts_path, notice: "You have updated book successfully."
+    redirect_to posts_path, notice: "削除しました"
   end
 
   private

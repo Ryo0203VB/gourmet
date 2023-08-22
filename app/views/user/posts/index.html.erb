@@ -1,17 +1,7 @@
 <div class='container px-5 px-sm-0'>
 
     <div class='col-md-12 offset-md-1'>
-      <h2>Store</h2>
       <table class='table table-center table-inverse'>
-  <thead>
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>image</th>
-      <th>introduction</th>
-      <th>address</th>
-    </tr>
-  </thead>
   <tbody>
     <% @posts.each do |posts| %>
       <tr>
@@ -24,24 +14,8 @@
          <% end %>
         </td>
         <td><%= image_tag posts.get_image(50, 50) %></td>
-        <td><%= posts.introduction %></td>
-        <td><%= posts.address %></td>
         <td><%= render "user/favorites/btn", post: posts %></td>
         <td>コメント数： <%= posts.comments.count %></td>
-        <td>
-          <div id="star-rate<%= posts.id%>"> </td>
-          <script>
-            $('#star-rate<%= posts.id %>').empty();
-            window.raty(document.querySelector('#star-rate<%= posts.id%>'), {
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              half      : false,
-              readOnly: true,
-              score: <%= posts.star %>,
-            });
-          </script>
-          </div>
       </tr>
     <% end %>
   </tbody>
