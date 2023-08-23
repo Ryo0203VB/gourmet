@@ -23,7 +23,16 @@ h1 {
 .form-group {
   width: 600px;
 }
-.card-list {
-  flex-flow: row wrap;
-  justify-content: flex-start;
+
+.card-list-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  margin: 75px;
+  padding: 75px
+px
+;
 }

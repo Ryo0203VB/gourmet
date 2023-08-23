@@ -51,9 +51,9 @@
 }
 
 .chat-messages {
-  flex: 1;
-  padding: 20px;
+  height: 700px;
   overflow-y: scroll;
+  padding: 20px;
   background:#7da4cd;
 }
 

@@ -17,6 +17,7 @@ class User::PostsController < ApplicationController
    to  = Time.current.at_end_of_day
    from  = (to - 6.day).at_beginning_of_day
    @posts = Post.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
+   @post = Post.all.page(params[:page]).per(12)
   end
 
   def create
