@@ -1,23 +1,38 @@
-<div class='container'>
-  <div class='row'>
-
-    <div class='col-md-8 offset-md-1'>
-  		<h2>Store</h2>
-  		<table class='table'>
-  		  <tr>
-          <td>
-            <%= link_to user_path(@user.id) do %>
-            <%= image_tag @post.user.get_image(100,100) %><br>
-            <%= @post.user.last_name %> <%= @post.user.first_name %>
+<div class="container">
+  <div class="row">
+    <div class="col-3 mt-3">
+    <table>
+     <tr>
+      <th class=pb-4><%= link_to user_path(@user.id) do %>
+            　<%= image_tag @post.user.image,  class: "rounded-circle",size:"250x250" %>
             <% end %>
-          </td>
-          <td><%= image_tag @post.get_image(100, 100) %><td>
-          <td><%= @post.name %></td>
-          <td><%= @post.introduction %></td>
-          <td><%=  link_to @post.address, maps_path(address: @post.address) %></td>
-          <td>コメント数： <%= @post.comments.count %></td>
-          <td>
-            <div id="star-rate<%= @post.id%>">
+      </th>
+     </tr>
+     <tr>
+       <td class="text-center mt-5" ><%= @user.last_name %> <%= @user.first_name %></td>
+     </tr>
+    </table>
+   </div>
+   <div class="col-4">
+    <div class="name text-center">
+    <%= @post.name %>
+    <div class="mt-5">
+    <%= render "user/favorites/btn", post: @post %>
+    </div>
+    </div>
+   </div>
+   <div class="col-4 mt-3">
+     <%= image_tag @post.image, class:"card-img-top",size:"350x350" %>
+   </div>
+  </div>
+</div>
+<div class="container mt-5">
+  <div class="mb-4 pt-3">
+    <%= @post.introduction %>
+  </div> 
+</div>
+<div class="container mt-5">
+  <div id="star-rate<%= @post.id%>">
           <script>
             $('#star-rate<%= @post.id %>').empty();
             window.raty(document.querySelector('#star-rate<%= @post.id%>'), {
@@ -29,7 +44,13 @@
               score: <%= @post.star %>,
             });
           </script>
-          </div>
+  </div> 
+</div>
+          <td><%= @post.introduction %></td>
+          <td><%=  link_to @post.address, maps_path(address: @post.address) %></td>
+          <td>コメント数： <%= @post.comments.count %></td>
+          <td>
+            
           </td>
 
           <% if @post.user == current_user %>
