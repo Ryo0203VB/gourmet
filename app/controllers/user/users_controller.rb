@@ -10,7 +10,7 @@ class User::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts
-    @post = Post.all.page(params[:page]).per(3)
+    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(3)
     #チャット
 			#Entry内のuser_idがcurrent_userと同じEntry
 			@currentUserEntry = Entry.where(user_id: current_user.id)

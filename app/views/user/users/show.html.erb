@@ -3,7 +3,7 @@
     <div class="col-4 mt-3">
     <table>
      <tr>
-       <th class=pb-4><%= image_tag @user.image, class: "rounded-circle", size: "250x250" %></th>
+       <th class=pb-4><%= image_tag @user.get_image(250,250), class: "rounded-circle" %></th>
      </tr>
      <tr>
        <td class="text-center mt-5" ><%= @user.last_name %> <%= @user.first_name %></td>
@@ -32,17 +32,21 @@
             <%= @user.introduction %>
          </div>
          <% unless @user.guest_user? %>
+           <% if @user.id == current_user.id%>
             <div class="text-center pt-5">
              <%= link_to "編集する", edit_user_path, class: "btn btn-outline-secondary btn-block" %>
             </div>
-            <% end %>
-
+          <% else %>
+            <%= render "user/relationships/btn", user: @user, options: { class: "btn btn-outline-secondary btn-block"} %>
+          <% end %>
+        <% end %>
+         </div>
         </div>
-
+       </div>
 
    <div class="card-list-container">
     <% @posts.each do |posts| %>
-     <div class="card w-50 mx-auto mt-2 shadow-lg">
+     <div class="card w-25 mx-auto mt-2 shadow-lg">
        <%= link_to post_path(posts.id),data: {"turbolinks"=>false} do %>
         <%= image_tag posts.image, class:"card-img-top",size:"50x350" %>
        <% end %>
@@ -81,10 +85,12 @@
     </div>
     <% end %>
   </div>
+  <div class="d-flex justify-content-center">
+    <%= paginate @posts %>
   </div>
-</div>
 
-           <%= render "user/relationships/btn", user: @user, options: { class: ""} %>
+
+           
 
            <!--現在ログインしているユーザーではないという条件式をつける-->
             <% unless @user.id == current_user.id %>
