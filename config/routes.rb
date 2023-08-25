@@ -10,7 +10,10 @@ devise_for :admin, skip: [:registrations, :passwords], controllers: {
    get "/homes" => "homes#top"
    get "search" => "searches#search"
    resources :genres, only:[:index, :create, :edit, :update, :destroy]
-   resources :users, only:[:index, :show, :edit, :update]
+   resources :users, only:[:index, :show, :edit, :update] do
+     get'posts' => 'posts#index'
+   end
+   resources :posts, only: [:show, :destroy]
 end
 
   # 顧客用

@@ -1,10 +1,9 @@
 class Admin::UsersController < ApplicationController
 
-
   before_action :authenticate_admin!
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(10)
   end
 
   def show
@@ -27,7 +26,7 @@ class Admin::UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :is_deleted)
+      params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :image, :introduction, :phone_number, :is_deleted)
     end
 
 end
