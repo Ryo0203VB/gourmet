@@ -14,14 +14,14 @@
           <div class="message self">
             <div class="message-current-name"><%= current_user.last_name %><%= current_user.first_name %></div>
             <div class="message-body">
-             <p><%= m.message %></p>
+             <%= m.message %>
             </div>
           </div>
         <% else %>
          <div class="message other">
           <div class="message-sender"><%= m.user.last_name %><%= m.user.first_name %></div>
            <div class="message-body">
-           <p><%= m.message %></p>
+           <%= m.message %>
          </div>
          </div>
         <% end %>
@@ -39,6 +39,3 @@
  </div>
 
 </div>
- <script>
-  $("#scroll-inner").scrollTop($("#scroll-inner")[0].scrollHeight);
-</script>

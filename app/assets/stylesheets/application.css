@@ -138,4 +138,28 @@
   border-radius: 15px;    /*角を丸くする*/
 }
 
+.home {
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  width: 100%;
+  padding-top: 4rem;
+  position: relative;
+}
 
+.app-title {
+  text-align: center;
+  font-size: 4rem;
+  padding: 2rem;
+  color: #333;
+}
+
+.outline {
+ text-align: center;
+ font-size: 1rem;
+
+}
+
+.border{
+  height:400px;
+}

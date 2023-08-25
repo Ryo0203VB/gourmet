@@ -28,7 +28,7 @@ class User::PostsController < ApplicationController
       redirect_to post_path(@post.id), notice: "投稿できました"
     else
       @posts = Post.all
-      render :new
+      redirect_to new_post_path
     end
   end
 
@@ -41,7 +41,7 @@ class User::PostsController < ApplicationController
     if @post.update(post_params)
       redirect_to post_path, notice: "編集できました"
     else
-      render :edit
+      redirect_to edit_post_path
     end
   end
 
