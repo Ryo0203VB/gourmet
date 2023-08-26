@@ -46,3 +46,21 @@ h1 {
 .destroy {
   wight: 460px;
 }
+
+.comment-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.comment-zone {
+  height: 270px;
+  overflow-y: scroll;
+}
+
+.border.border-dark {
+  height: 430px;
+}
+

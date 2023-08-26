@@ -1,65 +1,71 @@
 <div class="container">
   <div class="row">
     <div class="col-3 mt-3">
-    <table>
-     <tr>
-      <th class=pb-4><%= link_to user_path(@user.id) do %>
-            　<%= image_tag @post.user.image,  class: "rounded-circle",size:"200x200" %>
+      <table>
+        <tr>
+          <th class="pb-4">
+            <%= link_to user_path(@user.id) do %>
+              <%= image_tag @post.user.image, class: "rounded-circle", size: "200x200" %>
             <% end %>
-      </th>
-     </tr>
-     <tr>
-       <td class="text-center mt-5" ><%= @user.last_name %> <%= @user.first_name %></td>
-     </tr>
-    </table>
-   </div>
-   <div class="col-4">
-    <div class="name text-center">
-    <%= @post.name %>
-    <div class="mt-5">
-    <%= render "user/favorites/btn", post: @post %><br>
-    <%= @post.comments.count %>コメント数
+          </th>
+        </tr>
+        <tr>
+          <td class="text-center mt-5"><%= @user.last_name %> <%= @user.first_name %></td>
+        </tr>
+      </table>
     </div>
+    <div class="col-3">
+      <div class="name text-center">
+        <%= @post.name %>
+        <div class="mt-5">
+          <%= render "user/favorites/btn", post: @post %><br>
+          <%= @post.comments.count %>コメント数
+        </div>
+      </div>
     </div>
-   </div>
-   <div class="col-3 mt-3">
-     <%= image_tag @post.image, class:"card-img-top",size:"350x350" %>
-   </div>
+    <div class="col-4 mt-3">
+      <%= image_tag @post.image, class: "card-img-top", size: "400x400" %>
+    </div>
   </div>
 </div>
 <div class="container mt-5">
-  <div class= "col-10 border border-dark mb-3 pt-3">
+  <div class="col-10 border border-dark mb-3 pt-3">
     <%= @post.introduction %>
     <div class="container my-1">
-    <div id="star-rate<%= @post.id%>">
-          <script>
-            $('#star-rate<%= @post.id %>').empty();
-            window.raty(document.querySelector('#star-rate<%= @post.id%>'), {
-              size      : 36,
-              starOff   : '<%= asset_path('star-off.png') %>',
-              starOn    : '<%= asset_path('star-on.png') %>',
-              half      : false,
-              readOnly: true,
-              score: <%= @post.star %>,
-            });
-          </script>
-  </div>
-</div>
- 住所：<%=  link_to @post.address, maps_path(address: @post.address) %>(※押したら地図が表示されます)
+      <div id="star-rate<%= @post.id %>">
+        <script>
+          $('#star-rate<%= @post.id %>').empty();
+          window.raty(document.querySelector('#star-rate<%= @post.id %>'), {
+            size: 36,
+            starOff: '<%= asset_path('star-off.png') %>',
+            starOn: '<%= asset_path('star-on.png') %>',
+            half: false,
+            readOnly: true,
+            score: <%= @post.star %>,
+          });
+        </script>
+      </div>
+    </div>
+    住所：<%= link_to @post.address, maps_path(address: @post.address) %>(※押したら地図が表示されます)
   </div>
 </div>
 <div class="container">
- <div class="row">
-   <div class="col-10">
-          <% if @post.user == current_user %>
-                <%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
-                <%= link_to 'Destroy', post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-block"%>
-            <% end %>
- </div>
-
-
-          </div>
-        </div>
+  <div class="row">
+    <div class="col-10">
+      <% if @post.user == current_user %>
+        <%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
+        <%= link_to 'Destroy', post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<div class="comment-container">
+  <div class="row">
+    <div class="col-10 border border-dark">
+      <div class="comment-zone">
+        <%= render "user/comments/index", post: @post %>
       </div>
-      <%= render "user/comments/index", post: @post %>
       <%= render "user/comments/form", post: @post, comment: @comment %>
+    </div>
+  </div>
+</div>

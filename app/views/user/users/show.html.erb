@@ -1,69 +1,69 @@
 <div class="container">
   <div class="row">
     <div class="col-lg-4 mt-3">
-    <table>
-     <tr>
-       <th class=pb-4><%= image_tag @user.get_image(250,250), class: "rounded-circle" %></th>
-     </tr>
-     <tr>
-       <td class="text-center mt-5" ><%= @user.last_name %> <%= @user.first_name %></td>
-     </tr>
-    </table>
+      <table>
+        <tr>
+          <th class=pb-4><%= image_tag @user.get_image(250,250), class: "rounded-circle" %></th>
+        </tr>
+        <tr>
+          <td class="text-center mt-5" ><%= @user.last_name %> <%= @user.first_name %></td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-6 ml-2 mt-5">
+      <table class="table text-center">
+        <thead>
+          <tr>
+            <th>投稿</th>
+            <th>フォロワー</th>
+            <th>フォロー中</th>
+          </tr>
+        </thead>
+        <tbody class=text-center>
+          <tr>
+            <td><%= @user.posts.count %></td>
+            <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
+            <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="text-center mb-4 pt-3">
+        <%= @user.introduction %>
       </div>
-        <div class="col-6 ml-2 mt-5">
-         <table class="table text-center">
-          <thead>
-            <tr>
-              <th>投稿</th>
-              <th>フォロワー</th>
-              <th>フォロー中</th>
-           <tr>
-          </thead>
-          <tbody class=text-center>
-            <tr>
-              <td><%= @user.posts.count %></td>
-              <td><%= link_to @user.followings.count, user_followings_path(@user) %></td>
-              <td><%= link_to @user.followers.count, user_followers_path(@user) %></td>
-           </tr>
-          </tbody>
-        </table>
-         <div class="text-center mb-4 pt-3">
-            <%= @user.introduction %>
-         </div>
-
-         <% unless @user.guest_user? %>
-           <% if @user.id == current_user.id%>
-            <div class="text-center pt-5">
-             <%= link_to "編集する", edit_user_path, class: "btn btn-outline-secondary btn-block" %>
-            </div>
-          <% else %>
-            <%= render "user/relationships/btn", user: @user, options: { class: "btn btn-outline-secondary btn-block"} %>
-            <!--現在ログインしているユーザーではないという条件式をつける-->
-            <% unless @user.id == current_user.id %>
+      
+      <% unless @user.guest_user? %>
+        <% if @user.id == current_user.id %>
+          <div class="text-center pt-5">
+            <%= link_to "編集する", edit_user_path, class: "btn btn-outline-secondary btn-block" %>
+          </div>
+        <% else %>
+          <%= render "user/relationships/btn", user: @user, options: { class: "btn btn-outline-secondary btn-block" } %>
+          <!--現在ログインしているユーザーではないという条件式をつける-->
+          <% unless @user.id == current_user.id %>
             <!--相互フォロー状態のときの条件式も付け足す-->
-            <% if (current_user.following? @user) && (@user.following? current_user)  %>
-                <!-- 既にroomが存在していれば既存のroomへ -->
-                <% if @isRoom == true %>
-                  <%= link_to room_path(@roomId), class: "btn btn-outline-secondary btn-block" do %>
-                   <i class="fa-sharp fa-solid fa-envelope"></i>
+            <% if (current_user.following? @user) && (@user.following? current_user) %>
+              <!-- 既にroomが存在していれば既存のroomへ -->
+              <% if @isRoom == true %>
+                <%= link_to room_path(@roomId), class: "btn btn-outline-secondary btn-block" do %>
+                  <i class="fa-sharp fa-solid fa-envelope"></i>
+                <% end %>
+              <% else %>
+                <!-- roomが存在していなければroomを作成する  -->
+                <%= form_for @room do |f| %>
+                  <%= fields_for @entry do |e| %>
+                    <%= e.hidden_field :user_id, value: @user.id %>
                   <% end %>
-                <% else %>
-                    <!-- roomが存在していなければroomを作成する  -->
-        	        <%= form_for @room do |f| %>
-        	            <%= fields_for @entry do |e| %>
-        	               <%= e.hidden_field :user_id, value: @user.id %>
-        	            <% end %>
-        	            <%= f.submit "チャットを始める", class:"btn btn-primary btn-lg user-show-chat"%>
-        	        <% end %>
-        	    <% end %>
+                  <%= f.submit "チャットを始める", class: "btn btn-primary btn-lg user-show-chat" %>
+                <% end %>
+              <% end %>
             <% end %>
           <% end %>
-          <% end %>
         <% end %>
-         </div>
-        </div>
-       </div>
-   <%= render 'user/posts/card', posts: @posts %>
+      <% end %>
+    </div>
+  </div>
+  <%= render 'user/posts/card', posts: @posts %>
   <div class="d-flex justify-content-center">
     <%= paginate @posts %>
   </div>
+</div>

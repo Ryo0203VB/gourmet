@@ -1,20 +1,21 @@
 <table class="table">
   <thead>
     <tr>
-      <th>image</th>
-      <th>name</th>
-      <th colspan="3"></th>
+      <th>画像</th>
+      <th>名前</th>
+      <th>フォロワー数</th>
+      <th>フォロー数</th>
     </tr>
   </thead>
   <tbody>
     <% users.each do |user| %>
       <tr>
-        <td><%= image_tag user.get_image(100,100) %></td>
+        <td><%= image_tag user.get_image(100,100),class: "rounded-circle" %></td>
         <td><%= user.last_name %> <%= user.first_name %></td>
         <td>フォロー数: <%= user.followings.count %></td>
         <td>フォロワー数: <%= user.followers.count %></td>
-        <td><%= render "user/relationships/btn", user: user, options: { class: "follow-link" } %></td>
-        <td><%= link_to "Show", user %></td>
+        <td><%= render "user/relationships/btn", user: user, options: { class: "btn btn-outline-secondary" } %></td>
+        <td><%= link_to "詳細", user,class: "btn btn-outline-secondary" %></td>
       </tr>
     <% end %>
   </tbody>
