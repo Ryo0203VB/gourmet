@@ -1,0 +1,10 @@
+<script>
+   $('#star').empty();
+    window.raty(document.querySelector('#star'), {
+      size     : 36,
+      starOff:  '<%= asset_path('star-off.png') %>',
+      starOn : '<%= asset_path('star-on.png') %>',
+      scoreName: 'post[star]',
+      half: false,
+    })
+  </script>

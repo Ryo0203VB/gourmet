@@ -1,5 +1,6 @@
 <div class="container">
   <div class="row">
+    <div class="col-1"></div>
     <div class="col-3 mt-3">
       <table>
         <tr>
@@ -29,9 +30,11 @@
   </div>
 </div>
 <div class="container mt-5">
-  <div class="col-10 border border-dark mb-3 pt-3">
-    <%= @post.introduction %>
-    <div class="container my-1">
+  <div class="row">
+    <div class="col-1"></div>
+  <div class="col-10 border border-dark my-3">
+    <%= @post.introduction.gsub(/\n/, "<br>").html_safe %>
+    <div class="container m-3">
       <div id="star-rate<%= @post.id %>">
         <script>
           $('#star-rate<%= @post.id %>').empty();
@@ -49,18 +52,25 @@
     住所：<%= link_to @post.address, maps_path(address: @post.address) %>(※押したら地図が表示されます)
   </div>
 </div>
+</div>
 <div class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-1"></div>
+    <div class="col-5">
       <% if @post.user == current_user %>
-        <%= link_to 'Edit', edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
-        <%= link_to 'Destroy', post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-block" %>
+        <%= link_to '編集', edit_post_path(@post.id), class: "btn btn-outline-success btn-block" %>
       <% end %>
+    </div>
+    <div class="col-5">
+      <% if @post.user == current_user %>
+    <%= link_to '削除', post_path, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-outline-danger btn-block" %>
+    <% end %>
     </div>
   </div>
 </div>
-<div class="comment-container">
+<div class="container mt-3">
   <div class="row">
+    <div class="col-1"></div>
     <div class="col-10 border border-dark">
       <div class="comment-zone">
         <%= render "user/comments/index", post: @post %>

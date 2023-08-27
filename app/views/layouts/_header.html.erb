@@ -1,52 +1,45 @@
 <header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark"  id="navbarNavDropdown">
-    <ul class="nav navbar-nav navbar-left">
-　　　　  <div class='nav-link text-light'>
-　　　　    グルメでGO
-　　　　  </div>
-　　　　</ul>
-    　<div class="container">
-       <div class="login-name text-light">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarNavDropdown">
+   <div class="container">
+     <h4 class='ml-5 text-light'>グルメでGO</h4>
+      <div class="login-name text-light">
         <% if user_signed_in? %>
-        <p></p>
-　　　　 <% elsif admin_signed_in? %>
-　　　　<p>管理者 ログイン中</p>
-　　　　<% end %>
-　　　 </div>
+          <p></p>
+        <% elsif admin_signed_in? %>
+          <p>管理者 ログイン中</p>
+        <% end %>
+      </div>
 
-　　　　<ul class="nav navbar-nav navbar-right">
-　　　　  <% if user_signed_in? %>
-　　　　  <!--ユーザーがログインしているとき-->
+      <ul class="nav navbar-nav navbar-right ml-5">
+        <% if user_signed_in? %>
+          <!-- ユーザーがログインしているとき -->
           <li>
-            <%= link_to user_path(current_user.id),class: 'nav-link text-light' do %>
+            <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
               マイページ
             <% end %>
           </li>
           <li>
-            <%= link_to new_post_path,class: 'nav-link text-light' do %>
-            新規投稿
+            <%= link_to new_post_path, class: 'nav-link text-light' do %>
+              新規投稿
             <% end %>
           </li>
-         <li>
-            <%= link_to posts_path,class: 'nav-link text-light' do %>
-            投稿一覧
+          <li>
+            <%= link_to posts_path, class: 'nav-link text-light' do %>
+              投稿一覧
             <% end %>
           </li>
-
           <li>
-            <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text-light' do %>
-               ログアウト
+            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+              ログアウト
             <% end %>
           </li>
-
           <li>
-          <%= render 'layouts/search' %>
-         </li>
-
-          <% elsif admin_signed_in? %>
-          <!--管理車がログインしているとき-->
+            <%= render 'layouts/search' %>
+          </li>
+        <% elsif admin_signed_in? %>
+          <!-- 管理者がログインしているとき -->
           <li>
-            <%=  link_to admin_users_path, class: 'nav-link text-light' do %>
+            <%= link_to admin_users_path, class: 'nav-link text-light' do %>
               会員一覧
             <% end %>
           </li>
@@ -60,35 +53,33 @@
               ログアウト
             <% end %>
           </li>
-
           <li>
-          <%= render 'layouts/search' %>
-         </li>
-
-          <% else %>
-　　　　　<!--誰もログインしていないとき-->
-　　　　　<li>
-            <%= link_to root_path,class: 'nav-link text-light' do %>
-               ホーム
+            <%= render 'layouts/search' %>
+          </li>
+        <% else %>
+          <!-- 誰もログインしていないとき -->
+          <li>
+            <%= link_to root_path, class: 'nav-link text-light' do %>
+              ホーム
             <% end %>
           </li>
           <li>
-            <%= link_to about_path,class: 'nav-link text-light' do %>
-               注意事項
+            <%= link_to about_path, class: 'nav-link text-light' do %>
+              注意事項
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-               新規登録
+            <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
+              新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
-               ログイン
+            <%= link_to new_user_session_path, class: 'nav-link text-light' do %>
+              ログイン
             <% end %>
           </li>
         <% end %>
-        </ul>
-      </div>
+      </ul>
+    </div>
   </nav>
 </header>

@@ -19,7 +19,11 @@ class User < ApplicationRecord
   has_many :chats
 
 
-
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
+  validates :phone_number, presence: true
   validates :email, presence: true
   validates :introduction, length: {maximum: 50 }
 
@@ -66,7 +70,11 @@ end
     def self.guest
       find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
         user.password = SecureRandom.urlsafe_base64
-        name = "guestuser"
+        user.last_name = "guest"
+        user.first_name = "user"
+        user.last_name_kana = "guest"
+        user.first_name_kana = "user"
+        user.phone_number = "00000000"
       end
     end
 

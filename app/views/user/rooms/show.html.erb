@@ -11,7 +11,7 @@
   <div class="chat-messages">
     <% if @chats.present? %>
       <% @chats.each do |m| %>
-        <% if @myUserId == m.user.id  %>
+        <% if @myUserId == m.user.id %>
           <div class="message self">
             <div class="message-current-name"><%= current_user.last_name %><%= current_user.first_name %></div>
             <div class="message-body">
