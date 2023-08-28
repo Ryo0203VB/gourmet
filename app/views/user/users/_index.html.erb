@@ -1,22 +1,33 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th>画像</th>
-      <th>名前</th>
-      <th>フォロワー数</th>
-      <th>フォロー数</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% users.each do |user| %>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= image_tag user.get_image(100,100),class: "rounded-circle" %></td>
-        <td><%= user.last_name %> <%= user.first_name %></td>
-        <td>フォロー数: <%= user.followings.count %></td>
-        <td>フォロワー数: <%= user.followers.count %></td>
-        <td><%= render "user/relationships/btn", user: user, options: { class: "btn btn-outline-secondary" } %></td>
-        <td><%= link_to "詳細", user,class: "btn btn-outline-secondary" %></td>
+        <th>画像</th>
+        <th>名前</th>
+        <th>フォロー数</th>
+        <th>フォロワー数</th>
+        <th></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% users.each do |user| %>
+        <tr>
+          <td><%= image_tag user.get_image(100,100), class: "rounded-circle" %></td>
+          <td><%= user.last_name %> <%= user.first_name %></td>
+          <td>
+            <span class="d-none d-md-inline">フォロー数:</span>
+            <%= user.followings.count %>
+          </td>
+          <td>
+            <span class="d-none d-md-inline">フォロワー数:</span>
+            <%= user.followers.count %>
+          </td>
+          <td>
+            <%= render "user/relationships/btn", user: user, options: { class: "btn btn-outline-secondary" } %>
+            <%= link_to "詳細", user, class: "btn btn-outline-secondary mt-2 mt-md-0" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

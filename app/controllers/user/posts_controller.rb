@@ -68,5 +68,4 @@ class User::PostsController < ApplicationController
        end
   end
 
-
 end

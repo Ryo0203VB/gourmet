@@ -27,17 +27,18 @@
           </tr>
         </tbody>
       </table>
-      <div class="mb-4 pt-3">
-        <%= @user.introduction.gsub(/\n/, "<br>").html_safe %>
-      </div>
-
+      <% unless @user.introduction.blank? %>
+      　<div class="mb-2">
+        　<%= @user.introduction.gsub(/\n/, "<br>").html_safe %>
+      　</div>
+　　　<% end %>
       <% unless @user.guest_user? %>
         <% if @user.id == current_user.id %>
-          <div class="text-center pt-5">
+          <div class="text-center">
             <%= link_to "編集する", edit_user_path, class: "btn btn-outline-secondary btn-block" %>
           </div>
         <% else %>
-          <%= render "user/relationships/btn", user: @user, options: { class: "btn btn-outline-secondary btn-block" } %>
+         <%= render "user/relationships/btn", user: @user, options: { class: "btn btn-outline-secondary btn-block" } %>
           <!--現在ログインしているユーザーではないという条件式をつける-->
           <% unless @user.id == current_user.id %>
             <!--相互フォロー状態のときの条件式も付け足す-->

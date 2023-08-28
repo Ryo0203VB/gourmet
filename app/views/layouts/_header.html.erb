@@ -1,74 +1,74 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbarNavDropdown">
-   <div class="container">
-     <h4 class='ml-5 text-light'>グルメでGO</h4>
-      <div class="login-name text-light">
-        <% if user_signed_in? %>
-          <p></p>
-        <% elsif admin_signed_in? %>
-          <p>管理者 ログイン中</p>
-        <% end %>
-      </div>
-
-      <ul class="nav navbar-nav navbar-right ml-5">
-        <% if user_signed_in? %>
-          <!-- ユーザーがログインしているとき -->
-          <li>
-            <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
-              マイページ
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_post_path, class: 'nav-link text-light' do %>
-              新規投稿
-            <% end %>
-          </li>
-          <li>
-            <%= link_to posts_path, class: 'nav-link text-light' do %>
-              投稿一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
-              ログアウト
-            <% end %>
-          </li>
-          <li>
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand m-0" href="/">グルメでGO</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div class="login-name mx-auto text-light">
+          <% if user_signed_in? %>
+            <p>ようこそ！</p>
+          <% elsif admin_signed_in? %>
+            <p>管理者 ログイン中</p>
+          <% end %>
+        </div>
+        <ul class="navbar-nav ml-auto">
+          <% if user_signed_in? %>
+            <!-- ユーザーがログインしているとき -->
+            <li>
+              <%= link_to user_path(current_user.id), class: 'nav-link text-light' do %>
+                マイページ
+              <% end %>
+            </li>
+            <li>
+              <%= link_to new_post_path, class: 'nav-link text-light' do %>
+                新規投稿
+              <% end %>
+            </li>
+            <li>
+              <%= link_to posts_path, class: 'nav-link text-light' do %>
+                投稿一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: 'nav-link text-light' do %>
+                ログアウト
+              <% end %>
+            </li>
             <%= render 'layouts/search' %>
-          </li>
-        <% elsif admin_signed_in? %>
-          <!-- 管理者がログインしているとき -->
-          <li>
-            <%= link_to admin_users_path, class: 'nav-link text-light' do %>
-              会員一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
-              ジャンル一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
-              ログアウト
-            <% end %>
-          </li>
-          <li>
+          <% elsif admin_signed_in? %>
+            <!-- 管理者がログインしているとき -->
+            <li>
+              <%= link_to admin_users_path, class: 'nav-link text-light' do %>
+                会員一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_genres_path, class: 'nav-link text-light' do %>
+                ジャンル一覧
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, class: 'nav-link text-light', method: :delete do %>
+                ログアウト
+              <% end %>
+            </li>
             <%= render 'layouts/search' %>
-          </li>
-        <% else %>
-          <!-- 誰もログインしていないとき -->
-          <li>
-            <%= link_to root_path, class: 'nav-link text-light' do %>
-              ホーム
-            <% end %>
-          </li>
-          <li>
-            <%= link_to about_path, class: 'nav-link text-light' do %>
-              注意事項
-            <% end %>
-          </li>
-          <li>
+          <% else %>
+            <!-- 誰もログインしていないとき -->
+            <li>
+              <%= link_to root_path, class: 'nav-link text-light' do %>
+                ホーム
+              <% end %>
+            </li>
+            <li>
+              <%= link_to about_path, class: 'nav-link text-light' do %>
+                注意事項
+              <% end %>
+            </li>
+            <li>
             <%= link_to new_user_registration_path, class: 'nav-link text-light' do %>
               新規登録
             <% end %>
@@ -78,8 +78,9 @@
               ログイン
             <% end %>
           </li>
-        <% end %>
-      </ul>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

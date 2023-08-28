@@ -1,10 +1,15 @@
-<script>
-   $('#star').empty();
-    window.raty(document.querySelector('#star'), {
-      size     : 36,
-      starOff:  '<%= asset_path('star-off.png') %>',
-      starOn : '<%= asset_path('star-on.png') %>',
-      scoreName: 'post[star]',
-      half: false,
-    })
-  </script>
+<div class="container m-3">
+      <div id="star-rate<%= post.id %>">
+        <script>
+          $('#star-rate<%= post.id %>').empty();
+          window.raty(document.querySelector('#star-rate<%= post.id %>'), {
+            size: 36,
+            starOff: '<%= asset_path('star-off.png') %>',
+            starOn: '<%= asset_path('star-on.png') %>',
+            half: false,
+            readOnly: true,
+            score: <%= post.star %>,
+          });
+        </script>
+      </div>
+    </div>

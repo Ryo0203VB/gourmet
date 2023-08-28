@@ -10,12 +10,14 @@ class Admin::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user =  @post.user
- end
+  end
 
 def destroy
   @post = Post.find(params[:id])
+  user_id = @post.user.id
+
   @post.destroy
-  redirect_to admin_user_posts, notice: "削除しました"
+  redirect_to admin_user_posts_path(user_id), notice: "削除しました"
 end
 
 end

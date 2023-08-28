@@ -1,10 +1,10 @@
 <% if controller_name != 'sessions' %>
   <div class="search_container">
     <%= search_form_for @q, url: search_path, class: "row justify-content-end" do |f| %>
-      <div>
+      <div class="ml-3">
         <%= f.search_field :last_name_or_first_name_cont, class: "form-control" %>
       </div>
-      <div class="col-md-1 p-0">
+      <div>
         <button class="btn btn-outline-success" type="submit">
           <i class="fa-solid fa-magnifying-glass"></i>
         </button>

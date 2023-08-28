@@ -1,7 +1,7 @@
 <div class="container">
   <div class="mt-4">
     <h3 class="font-weight-bold">会員情報編集</h3>
-    <!--エラーメッセージ-->
+    <!-- エラーメッセージ -->
     <% if @user.errors.any? %>
       <%= @user.errors.count %>件のエラーが発生しました
       <ul>
@@ -11,58 +11,69 @@
       </ul>
     <% end %>
 
-    <!--編集フォーム-->
+    <!-- 編集フォーム -->
     <div class="mt-5">
-      <%= form_with model: @user, url: user_path, method: :patch, local:true do |f| %>
-      <div class="field row mt-2">
-        <%= f.label :image, "ユーザー画像", class: "col-4 col-form-label" %>
-        <%= f.file_field :image, class: "btn" %>
-      </div>
-        <div class="field row mt-2">
-          <label class="col-2">氏名</label>
-            <%= f.label :（姓） , class: 'col-1' %>
-            <%= f.text_field :last_name, autofocus: true %>
-            <%= f.label :（名） , class: 'col-1' %>
-            <%= f.text_field :first_name %>
+      <%= form_with model: @user, url: user_path, method: :patch, local: true do |f| %>
+        <div class="form-group row mt-2">
+          <%= f.label :image, "ユーザー画像", class: "col-md-4 col-form-label" %>
+          <div class="col-md-8">
+            <%= f.file_field :image, class: "btn" %>
+          </div>
         </div>
-
-        <div class="field row mt-2">
-          <label class="col-2">カナ</label>
-            <%= f.label :（ｾｲ）, class: 'col-1' %>
-            <%= f.text_field :last_name_kana %>
-            <%= f.label :（ﾒｲ）, class: 'col-1' %>
-            <%= f.text_field :first_name_kana %>
+        <div class="form-group row mt-2">
+          <label class="col-md-2">氏名</label>
+          <div class="col-md-5">
+            <%= f.label :（姓）, class: 'col-form-label' %>
+            <%= f.text_field :last_name, autofocus: true, class: "form-control" %>
+          </div>
+          <div class="col-md-5">
+            <%= f.label :（名）, class: 'col-form-label' %>
+            <%= f.text_field :first_name, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="field row mt-2">
-          <label class="col-3">紹介文</label>
-            <%= f.text_area :introduction %>
+        <div class="form-group row mt-2">
+          <label class="col-md-2">カナ</label>
+          <div class="col-md-5">
+            <%= f.label :（ｾｲ）, class: 'col-form-label' %>
+            <%= f.text_field :last_name_kana, class: "form-control" %>
+          </div>
+          <div class="col-md-5">
+            <%= f.label :（ﾒｲ）, class: 'col-form-label' %>
+            <%= f.text_field :first_name_kana, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="field row mt-2">
-          <label class="col-3">電話番号</label>
-            <%= f.text_field :phone_number %>
+        <div class="form-group row mt-2">
+          <label class="col-md-3">紹介文</label>
+          <div class="col-md-9">
+            <%= f.text_area :introduction, class: "form-control" %>
+          </div>
         </div>
-
-        <div class="field row mt-2">
-          <label class="col-3">メールアドレス </label>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="form-group row mt-2">
+          <label class="col-md-3">電話番号</label>
+          <div class="col-md-9">
+            <%= f.text_field :phone_number, class: "form-control" %>
+          </div>
         </div>
-        <!--編集内容を保存ボタン-->
-        <div class="action row mt-3">
-          <div class="col-3"></div>
-          <div>
-            <%= f.submit "編集内容を保存",class: "btn btn-sm btn-success px-5 font-weight-bold" %>
+        <div class="form-group row mt-2">
+          <label class="col-md-3">メールアドレス</label>
+          <div class="col-md-9">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+        </div>
+        <!-- 編集内容を保存ボタン -->
+        <div class="form-group row mt-3">
+          <div class="col-md-9 offset-md-3 text-center">
+            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-success px-5 font-weight-bold" %>
           </div>
         </div>
       <% end %>
     </div>
-    <!--退会ボタン-->
-    <div class="actions row mt-3">
-      <div class="col-7"></div>
-      <div>
+    <!-- 退会ボタン -->
+    <div class="form-group row mt-3">
+      <div class="col-md-9 offset-md-3 text-center">
         <%= link_to "退会する", users_confirm_withdraw_path, class: "btn btn-sm btn-danger px-5" %>
       </div>
     </div>
   </div>
 </div>
+

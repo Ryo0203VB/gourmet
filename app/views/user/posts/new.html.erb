@@ -4,36 +4,52 @@
       <h1 class="font-weight-normal mt-3">新規投稿</h1>
     </div>
     <div class="row justify-content-center">
-      <%= form_with model: @post do |f| %>
-        <div class="form-group">
-          <label class="form-label">店名</label>
-          <%= f.text_field :name, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <label class="form-label">感想</label>
-          <%= f.text_area :introduction, rows: 10, class: "form-control" %>
-        </div>
-        <div class="form-group">
-          <label class="form-label">住所</label>
-          <%= f.text_field :address, class: "form-control" %>
-        </div>
-        <div class="form-group row">
-          <%= f.label :genre, "ジャンル", class: "col-4 col-form-label" %>
-          <%= f.select :genre_id, @genres, {}, class: "form-select" %>
-        </div>
-        <div class="field row mt-2">
-          <%= f.label :image, "投稿画像", class: "col-4 col-form-label" %>
-          <%= f.file_field :image, class: "btn" %>
-        </div>
-        <div class="form-group" id="star">
-          <%= f.label :star, '評価 ', class: 'col-md-3 col-form-label' %>
-          <div id="star"></div>
-        </div>
-        <%= render 'user/posts/star' %>
-        <div class="form-group">
-          <%= f.submit '投稿する', class: "btn btn-success" %>
-        </div>
-      <% end %>
+      <div class="col-md-8"> <!-- Adjust column width for mobile view -->
+        <%= form_with model: @post do |f| %>
+          <div class="form-group">
+            <%= f.label :店名, class: "form-label" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :紹介文, class: "form-label" %>
+            <%= f.text_area :introduction, rows: 5, class: "form-control" %>
+          </div>
+          <div class="form-group">
+            <%= f.label :住所, class: "form-label" %>
+            <%= f.text_field :address, class: "form-control" %>
+          </div>
+          <div class="form-group row align-items-center"> <!-- Use row and align-items-center for horizontal alignment -->
+            <%= f.label :genre_id, "ジャンル", class: "col-4 col-form-label" %> <!-- Use col-4 class for label width -->
+            <div class="col-8"> <!-- Adjust column width for the input field -->
+              <%= f.select :genre_id, @genres, {}, class: "form-select" %> <!-- Apply form-select class -->
+            </div>
+          </div>
+          <div class="form-group row align-items-center"> <!-- Use row and align-items-center for horizontal alignment -->
+            <%= f.label :image, "投稿画像", class: "col-4 col-form-label" %> <!-- Use col-4 class for label width -->
+            <div class="col-8"> <!-- Adjust column width for the file field -->
+              <%= f.file_field :image %> <!-- Apply form-control class -->
+            </div>
+          </div>
+          <div class="form-group" id="star-rating">
+            <%= f.label :star, '評価 ', class: 'form-label' %>
+            <div id="star"></div>
+          </div>
+          <script>
+            // JavaScriptのコード（変更なし）
+            $('#star').empty();
+            window.raty(document.querySelector('#star'), {
+              size: 36,
+              starOff: '<%= asset_path('star-off.png') %>',
+              starOn: '<%= asset_path('star-on.png') %>',
+              scoreName: 'post[star]',
+              half: false,
+            });
+          </script>
+          <div class="form-group">
+            <%= f.submit '投稿する', class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

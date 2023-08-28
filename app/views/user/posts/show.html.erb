@@ -34,21 +34,7 @@
     <div class="col-1"></div>
   <div class="col-10 border border-dark my-3">
     <%= @post.introduction.gsub(/\n/, "<br>").html_safe %>
-    <div class="container m-3">
-      <div id="star-rate<%= @post.id %>">
-        <script>
-          $('#star-rate<%= @post.id %>').empty();
-          window.raty(document.querySelector('#star-rate<%= @post.id %>'), {
-            size: 36,
-            starOff: '<%= asset_path('star-off.png') %>',
-            starOn: '<%= asset_path('star-on.png') %>',
-            half: false,
-            readOnly: true,
-            score: <%= @post.star %>,
-          });
-        </script>
-      </div>
-    </div>
+    <%= render 'user/posts/star',post: @post %>
     住所：<%= link_to @post.address, maps_path(address: @post.address) %>(※押したら地図が表示されます)
   </div>
 </div>
