@@ -38,10 +38,6 @@
   }
 }
 
-.mb-3 {
-    text-align: left; /* テキストを左寄せにする */
-  }
-
 /*ページネーション自体のデザイン*/
 .pagination>li>a {
   border: none;     /*枠線をなくす*/
