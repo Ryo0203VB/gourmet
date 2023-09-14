@@ -3,7 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre, foreign_key: 'genre_id'
   has_many :comments, dependent: :destroy
-  has_many :favorites, dependent: :destroy
+  has_many :favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
 
   has_one_attached :image
 
