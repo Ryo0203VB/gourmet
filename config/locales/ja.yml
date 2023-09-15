@@ -1,0 +1,21 @@
+ja:
+  activerecord:
+    errors:
+     models:
+      user:
+       attributes:
+        email:
+         taken: "このメールアドレスは既に使用されています"
+         blank: "メールアドレスが入力されていません"
+        password:
+         blank: "パスワードが入力されていません"
+        last_name:
+         blank: "名前(性)が入力されていません"
+        first_name:
+         blank: "名前(名)が入力されていません"
+        last_name_kana:
+         blank: "名前(セイ)が入力されていません"
+        first_name_kana:
+         blank: "名前(メイ)が入力されていません"
+        phone_number:
+         blank: "電話番号が入力されていません"
