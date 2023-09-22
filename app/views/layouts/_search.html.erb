@@ -2,7 +2,7 @@
   <div class="search_container">
     <%= search_form_for @q, url: search_path, class: "row justify-content-end" do |f| %>
       <div class="ml-3">
-        <%= f.search_field :last_name_or_first_name_cont, class: "form-control" %>
+        <%= f.search_field :last_name_or_first_name_cont, :placeholder => "ユーザーorジャンル名",class: "form-control" %>
       </div>
       <div>
         <button class="btn btn-outline-success" type="submit">

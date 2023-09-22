@@ -15,6 +15,8 @@ ja:
         introduction: 紹介文
         address: 住所
         genre: ジャンル名
+        image: 写真
+        star: 評価
   date:
     abbr_day_names:
     - 日
@@ -189,3 +191,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+

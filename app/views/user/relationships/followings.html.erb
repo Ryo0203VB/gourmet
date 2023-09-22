@@ -1,4 +1,4 @@
-<h2>さんのフォロー</h2>
+<h2><%= @user.last_name %> <%= @user.first_name %>さんのフォロー</h2>
   <% if @users.exists? %>
     <%= render "user/users/index", users: @users %>
   <% else %>

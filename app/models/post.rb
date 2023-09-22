@@ -3,7 +3,8 @@ class Post < ApplicationRecord
   validates :name,presence:true
   validates :introduction,presence:true,length:{maximum:200}
   validates :address,presence:true
-  validates :address,presence:true
+  validates :image,presence:true
+  validates :star,presence:true
   has_one_attached :image
 
   belongs_to :user
