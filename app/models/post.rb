@@ -1,16 +1,15 @@
 class Post < ApplicationRecord
 
+  validates :name,presence:true
+  validates :introduction,presence:true,length:{maximum:200}
+  validates :address,presence:true
+  validates :address,presence:true
+  has_one_attached :image
+
   belongs_to :user
   belongs_to :genre, foreign_key: 'genre_id'
   has_many :comments, dependent: :destroy
   has_many :favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'Favorite'
-
-  has_one_attached :image
-
-  validates :name,presence:true
-  validates :introduction,presence:true,length:{maximum:200}
-
-
 
   def get_image(height, width)
       unless image.attached?

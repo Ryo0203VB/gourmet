@@ -13,7 +13,7 @@
       <%= f.text_field :first_name, autofocus: true %>
     </div>
 
-    <div class="box-name">
+　　<div class="box-name">
       <%= f.label :last_name_kana, "名前（ｾｲ）" %>
       <%= f.text_field :last_name_kana, autofocus: true %>
 
@@ -34,7 +34,7 @@
     <div class="box-password">
       <%= f.label :password, "パスワード" %>
       <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上入れてください)</em>
+      <em>(<%= @minimum_password_length %> )</em>
       <% end %>
       <%= f.password_field :password, autocomplete: "new-password" %>
     </div>

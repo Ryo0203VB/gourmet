@@ -38,10 +38,12 @@ class User::UsersController < ApplicationController
   end
 
   def edit
+    is_matching_login_user
     @user = current_user
   end
 
   def update
+    is_matching_login_user
     @user = current_user
     if @user.update(user_params)
       flash[:notice] = "登録情報を更新しました"
@@ -70,15 +72,22 @@ class User::UsersController < ApplicationController
     params.require(:user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :phone_number, :image, :introduction, :is_deleted)
   end
 
- def ensure_guest_user
+  def is_matching_login_user
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to user_path(@user.id)
+    end
+  end
+
+  def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
- end
+  end
 
 
-  def reject_end_user
+   def reject_end_user
       @end_user = EndUser.find_by(email: params[:end_user][:email])
       if @end_user
         if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_deleted == true)
@@ -90,7 +99,6 @@ class User::UsersController < ApplicationController
       else
         flash[:notice] = "該当するユーザーが見つかりません"
       end
-  end
+   end
 
 end
-

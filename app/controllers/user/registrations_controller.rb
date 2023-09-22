@@ -66,7 +66,4 @@ class User::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
-
-
-
 end
