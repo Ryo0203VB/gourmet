@@ -40,10 +40,10 @@ http://44.197.193.199/
 - IDE：Cloud9
 - API:Google Map API
 ​
-## 開発環境
+## 機能一覧
 - ユーザー登録、ログイン機能(devise)
-- 管理者権限
-- 投稿機能
+- 管理者機能
+- 投稿機能(Active Storage)
 - いいね機能(Ajax)
 - コメント機能(Ajax)
 - フォロー機能
