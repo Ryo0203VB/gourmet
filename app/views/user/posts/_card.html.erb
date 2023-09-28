@@ -2,9 +2,13 @@
   <% posts.each do |post| %>
     <div class="card mx-auto mt-2 shadow-lg">
       <%= link_to post_path(post.id), data: { "turbolinks" => false } do %>
-        <% if post.present? && post.image.present? %>
-  　　　　　　<%= image_tag post.image, class: "card-img-top", style: "max-height: 350px; object-fit: cover;" %>
-　　　　<% end %>
+        <div class="card-image">
+          <% if post.present? && post.image.present? %>
+            <%= image_tag post.image, class: "card-img", alt: "Post Image", style: "width: 380px; height: 350px; object-fit: cover;" %>
+          <% else %>
+            <!-- 画像がない場合のデフォルト画像などを表示する場合のコードをここに追加 -->
+          <% end %>
+        </div>
       <% end %>
       <div class="card-body">
         <div class="row">
@@ -44,5 +48,3 @@
     </div>
   <% end %>
 </div>
-
-
