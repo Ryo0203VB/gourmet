@@ -6,7 +6,7 @@
 ![スクリーンショット 2023-09-27 16 02 23](https://github.com/Ryo0203VB/gourmet/assets/135448649/0715deff-ced0-49c0-8d4b-77161ab43f1e)
 
 ## サイトURL
-http://44.197.193.199/  
+http://44.197.193.199/
 画面中部のゲストログインから、メールアドレスとパスワードを入力せずにログインできます。
 
 ## サイト概要
@@ -37,7 +37,7 @@ http://44.197.193.199/
 
 ​
 ## 開発環境
-- OS：macOS Ventura 13.4.1
+- OS：Linux(Amazon Linux 2)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
