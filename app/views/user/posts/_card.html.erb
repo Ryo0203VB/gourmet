@@ -4,7 +4,7 @@
       <%= link_to post_path(post.id), data: { "turbolinks" => false }, class: "text-decoration: none" do %>
         <div class="card-image">
          <% if post.present? && post.image.present? %>
-          <%= image_tag post.image, class: "card-img", alt: "Post Image", style: "width: 380px; height: 350px; object-fit: cover;" %>
+          <%= image_tag post.image, class: "card-img", alt: "Post Image", style: "width: 400px; height: 350px; object-fit: cover;" %>
          <% else %>
           <!-- 画像がない場合のデフォルト画像などを表示する場合のコードをここに追加 -->
          <% end %>
