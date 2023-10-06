@@ -11,30 +11,31 @@ class User::UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts
     @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(3)
-    #チャット
-			#Entry内のuser_idがcurrent_userと同じEntry
-			@currentUserEntry = Entry.where(user_id: current_user.id)
-			#Entry内のuser_idがMYPAGEのparams.idと同じEntry
-		  @userEntry = Entry.where(user_id: @user.id)
-		    	#@user.idとcurrent_user.idが同じでなければ
-			    if @user.id == current_user.id
-			    else
-			      @currentUserEntry.each do |cu|
-			        @userEntry.each do |u|
-			          #もしcurrent_user側のルームidと＠user側のルームidが同じであれば存在するルームに飛ぶ
-			          if cu.room_id == u.room_id then
-			            @isRoom = true
-			            @roomId = cu.room_id
-			          end
-			        end
-			      end
-			      #ルームが存在していなければルームとエントリーを作成する
-			      if @isRoom
-			      else
-			        @room = Room.new
-			        @entry = Entry.new
-			      end
-			    end
+
+    # チャット
+    #Entry内のuser_idがcurrent_userと同じEntry
+    @currentUserEntry = Entry.where(user_id: current_user.id)
+    #Entry内のuser_idがMYPAGEのparams.idと同じEntry
+    @userEntry = Entry.where(user_id: @user.id)
+    #@user.idとcurrent_user.idが同じでなければ
+    if @user.id == current_user.id
+    else
+      @currentUserEntry.each do |cu|
+        @userEntry.each do |u|
+          if cu.room_id == u.room_id then
+            #もしcurrent_user側のルームidと＠user側のルームidが同じであれば存在するルームに飛ぶ
+            @isRoom = true
+            @roomId = cu.room_id
+          end
+        end
+      end
+      #ルームが存在していなければルームとエントリーを作成する
+      if @isRoom
+      else
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
   end
 
   def edit
@@ -45,6 +46,7 @@ class User::UsersController < ApplicationController
   def update
     is_matching_login_user
     @user = current_user
+
     if @user.update(user_params)
       flash[:notice] = "登録情報を更新しました"
       redirect_to user_path
@@ -60,8 +62,7 @@ class User::UsersController < ApplicationController
   # 顧客の退会処理(ステータスの更新)
   def withdraw
     @user = current_user
-    # is_deletedカラムをtrueに変更することにより削除フラグを立てる
-    @user.update(is_deleted: true)
+    @user.update(is_deleted: true) # is_deletedカラムをtrueに変更することにより削除フラグを立てる
     reset_session
     redirect_to root_path
   end
@@ -74,31 +75,27 @@ class User::UsersController < ApplicationController
 
   def is_matching_login_user
     @user = User.find(params[:id])
-    unless @user.id == current_user.id
-      redirect_to user_path(@user.id)
-    end
+    redirect_to user_path(@user.id) unless @user.id == current_user.id
   end
 
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.guest_user?
-      redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
     end
   end
 
-
-   def reject_end_user
-      @end_user = EndUser.find_by(email: params[:end_user][:email])
-      if @end_user
-        if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_deleted == true)
-          flash[:notice] = "退会済みです。再度ご登録をしてご利用ください"
-          redirect_to new_end_user_registration_path
-        else
-          flash[:notice] = "項目を入力してください"
-        end
+  def reject_end_user
+    @end_user = EndUser.find_by(email: params[:end_user][:email])
+    if @end_user
+      if @end_user.valid_password?(params[:end_user][:password]) && (@end_user.is_deleted == true)
+        flash[:notice] = "退会済みです。再度ご登録をしてご利用ください"
+        redirect_to new_end_user_registration_path
       else
-        flash[:notice] = "該当するユーザーが見つかりません"
+        flash[:notice] = "項目を入力してください"
       end
-   end
-
+    else
+      flash[:notice] = "該当するユーザーが見つかりません"
+    end
+  end
 end
